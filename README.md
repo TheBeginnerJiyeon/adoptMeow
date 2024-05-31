@@ -1,5 +1,5 @@
-# [😽 **adoptMeow!**](https://www.youtube.com/watch?v=catyoutube임시)
-### 😽 CatAdopt는 고양이를 입양할 수 있는 사이트입니다..
+# [😽 **adoptMeow**](https://www.youtube.com/watch?v=catyoutube임시)
+### 😽 adoptMeow는 고양이를 입양할 수 있는 사이트입니다..
 
  😺 😸 😻 😽 😼 🙀 😿 😹 😾 
  🎍 💝 🎎 🎒 🎓 🎏 🎆 🎇 🎐 🎑 🎃 👻 🎅 🎄 🎁 🔔 🔕
@@ -36,7 +36,7 @@
 
 **Spring: 3**
 
-**mySQL DB : **
+**mySQL, myBatis**
 
 <br><br>
 
@@ -45,8 +45,14 @@
 
 <br><br>
 
-## 🎎 ERD
+## 🎃 ERD
 ![ERD]()
+
+<br><br>
+
+## 🎄 UseCase Diagram
+![ERD]()
+
 
 <br><br>
 
@@ -80,7 +86,10 @@
      </p>
 
 - [X] **상세 페이지**   
-
++ 보호소 기본 정보 조회   
++ '하트', '조회수', '댓글 수'   
++ 보호 고양이 메인 페이지 링크
++ Youtube API 통한 유튜브 클립 출력
      <p>    
 
      </p>
