@@ -1,65 +1,8 @@
 # [😽 **CatAdopt**](https://www.youtube.com/watch?v=catyoutube)
 ### 😽 CatAdopt는 고양이를 입양할 수 있는 사이트입니다..
-[logo]([https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shareicon.net%2Flogo-cat-social-media-social-network-logotype-circle-657343&psig=AOvVaw3lUJIpNPs59LqGaESbGx_T&ust=1717216169769000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMjxn_CGt4YDFQAAAAAdAAAAABAR](https://www.shareicon.net/data/128x128/2015/10/17/657343_cat_512x512.png)
-😺 😸 😻 😽 😼 🙀 😿 😹 😾
-<br>
-
-## ✨Overview
-뮤지컬 정보, 현재 진행중인 뮤지컬, 배우가 참여한 뮤지컬과 같은 정보를 얻을 수 있고
-
-커뮤니티를 통해 후기를 공유하고 다른 사용자와 의견의 주고 나눌 수 있습니다.
-
-**📆 프로젝트 기간 : 2023.06.15 ~ 2023.07.25**
-<br><br>
-
-## 🙂 업무분배 
-|**이름**|**업무**|
-|:---:|:---:|
-|**[이석현](https://github.com/Ha2sted)**|playDB 배우 정보 크롤링, Youtube API, 관리자 페이지 기능 담당|
-|**[정찬영](https://github.com/jchyng)**|playDB 뮤지컬 정보 크롤링, 뮤지컬 관련 기능, 배포 담당|
-|**[곽유섭](https://github.com/suby-kwak)**|마이 페이지(구독, 유저, 문의) 기능 담당, 관리자 페이지 기능 담당|
-|**[김현수](https://github.com/mini-boo)**|커뮤니티 페이지(게시글, 상세게시글, 좋아요) 기능 담당, UI 디테일 담당|
-|**[이종형](https://github.com/Dev-LJH)**|카카오 로그인 API, 유저 등록, 로그인 기능, 배우 정보 기능 담당|
-
-<br><br>
-
-## 🟢 주요 기술
-**크롤링** : PlayDB에서 뮤지컬과 배우 정보 크롤링
-
-**Youtube API** : 해당 뮤지컬의 관련 Youtube 클립 제공
-
-**KaKao Login API** 
-
-**EC2, RDS, S3** : S3 = 이미지 업로드에 사용
-
-<br><br>
-
-## 💻 개발환경
-**Java : 11**
-
-**Spring Boot : 2.7.13**
-
-**Local Oracle DB : xe 11g**
-
-**RDS : Oracle 19.0.0.0.ru-2023-04.rur-2023-04.r1**
-<br><br>
-
-## 📋 서비스 아키텍처
-![image](https://github.com/Weiver-project/Weiver/assets/76997735/6e881153-f943-4c2f-a562-c80dda027428)
-
-<br><br>
-
-## 📝 ERD
-![ERD](https://github.com/Weiver-project/Weiver/assets/78299214/d9689a4f-1e36-499f-beb1-9a8d57292528)
-
-<br><br>
-
-## 🎯 구현 결과
-### 뮤지컬   
-- [X] **메인 페이지**   
-+ 인기 뮤지컬: '봤어요' 클릭이 가장 많은 뮤지컬 상위 3개 출력   
-+ 커뮤니티 인기글: '조회수' 기준 상위 게시글 9개 출력   
-+ 추천 배우: 랜덤으로 배우 프로필 사진과 출연작 출력, 클릭 시 배우 상세 페이지 이동, 새로고침 시 배우 정보 변동   
+### 다음 프로젝트의 계획 클론, 수정함
+https://github.com/Weiver-project/Weiver/blob/main/README.md
+[logo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shareicon.net%2Flogo-cat-social-media-social-network-logotype-circle-657343&psig=AOvVaw3lUJIpNPs59LqGaESbGx_T&ust=1717216169769000&source=images&cd=vfe&opi=8997이 상세 페이지 이동, 새로고침 시 배우 정보 변동   
 + 공연 중인 뮤지컬: 공연 기간 기준 현재 공연 중인 뮤지컬 리스트 출력
    <p>
 ![뮤지컬 메인 페이지](https://github.com/Weiver-project/Weiver/assets/81962257/fbf2cc82-c97d-4032-8195-ba350ce451c4)
