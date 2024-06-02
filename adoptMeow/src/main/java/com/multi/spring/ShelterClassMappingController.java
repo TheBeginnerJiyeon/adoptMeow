@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/cat") // ** 는 모든 하위 폴더 전부
-public class ClassMappingController {
+@RequestMapping("/shelter")  // ** 는 모든 하위 폴더 전부
+public class ShelterClassMappingController {
 
 	@GetMapping("/regist")
 	public void registOrder(Model model) {
@@ -39,8 +39,9 @@ public class ClassMappingController {
 	
 }
 
-//@RestController :  RestController �뼱�끂�뀒�씠�뀡�쓣 �궗�슜�븯硫� @ResponseBody 瑜� �씪�씪�씠 �꽑�뼵 �븞�빐�룄 �릺寃� 吏��썝�빐以��떎. 
-//restController 李⑥껜媛� controller  + @ResponseBody  ->ajax�닔�뾽�븣 吏꾪뻾, springboot蹂닿컯�떆
+
+//@RestController :  RestController 어노테이션을 사용하면 @ResponseBody 를 일일이 선언 안해도 되게 지원해준다. 
+//restController 차체가 controller  + @ResponseBody  ->ajax수업때 진행, springboot보강시
 
 
 
