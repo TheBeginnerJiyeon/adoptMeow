@@ -46,6 +46,25 @@
 	
 	
 	
+
+	
+	<h2>신규 회원 등록</h2>
+	
+	<h3>POST : /users/modify</h3>
+	<form action="${pageContext.servletContext.contextPath}/users/modify" method="post">
+		<button type="submit">POST 보호소 수정 요청</button>
+	</form>
+	
+	<h3>POST : /users/delete</h3>
+	<form action="${pageContext.servletContext.contextPath}/users/delete" method="post">
+		<button type="submit">POST 보호소 삭제 요청</button>
+	</form>	
+	
+	<h3>GET : /users/detail/{orderNo}</h3>
+	<button onclick="location.href='${pageContext.servletContext.contextPath}/users/detail/3'">GET 회원 상세보기 요청</button>
+	
+	
+	
 	
 	
 	
