@@ -18,13 +18,16 @@
 	</form>
 	
 	<h3>POST : /cat/delete</h3>
-	<form action="${pageContext.servletContext.contextPath}/order/delete" method="post">
+	<form action="${pageContext.servletContext.contextPath}/cat/delete" method="post">
 		<button type="submit">POST 고양이 삭제 요청</button>
 	</form>	
 	
 	<h3>GET : /cat/detail/{orderNo}</h3>
 	<button onclick="location.href='${pageContext.servletContext.contextPath}/cat/detail/3'">GET 고양이 상세보기 요청</button>
 	
+	
+	<br><br>
+	<hr>
 	
 	
 
@@ -45,7 +48,8 @@
 	<button onclick="location.href='${pageContext.servletContext.contextPath}/shelter/detail/3'">GET 보호소 상세보기 요청</button>
 	
 	
-	
+	<br><br>
+	<hr>
 
 	
 	<h2>신규 회원 등록</h2>
@@ -65,7 +69,8 @@
 	
 	
 	
-	
+	<br><br>
+	<hr>
 	
 	
 	
