@@ -46,7 +46,8 @@
 <br><br>
 
 ## 🎃 ERD
-![ERD]()
+![image](https://github.com/TheBeginnerJiyeon/adoptMeow/assets/150709167/2255c2d9-b0f1-42ce-aada-a9c06446dbb3)
+
 
 <br><br>
 
