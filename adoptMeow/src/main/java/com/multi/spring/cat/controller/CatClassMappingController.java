@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sun.tools.javac.launcher.Main;
 
 @Controller
 @RequestMapping("/cat") // ** 는 모든 하위 폴더 전부
