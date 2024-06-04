@@ -24,4 +24,10 @@ public class UsersDAO {
 
 	}
 
+	public int updateUser(SqlSessionTemplate sqlSessionTemplate, UsersDTO usersDTO) {
+		int result = sqlSessionTemplate.update("updateUser", usersDTO);
+
+		return result;
+	}
+
 }

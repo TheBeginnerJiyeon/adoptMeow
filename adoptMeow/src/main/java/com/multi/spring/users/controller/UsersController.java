@@ -1,5 +1,7 @@
 package com.multi.spring.users.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +35,14 @@ public class UsersController {
 	public void insertForm() {
 
 	}
+	
+	@RequestMapping("/modify_form")
+	public void modifyForm() {
+		
+	}
 
 	@RequestMapping("/login")
-	public String login(UsersDTO usersDTO,  Model model,  RedirectAttributes redirectAttributes) {
+	public String login(UsersDTO usersDTO,  HttpSession httpSession) {
 
 		UsersDTO loginDto = null;
 		try {
@@ -50,10 +57,12 @@ public class UsersController {
 			e.printStackTrace();
 		}
 
-		redirectAttributes.addAttribute("loginId", loginDto.getId());
 
-		model.addAttribute("loginUser",loginDto); 
-
+		httpSession.setAttribute("loginUser", loginDto);
+		httpSession.setAttribute("loginUser2", usersDTO);
+		
+		/* redirectAttributes.addAttribute("loginUser",loginDto); */
+		
 		String page = "redirect:/";
 
 		return page;
@@ -61,9 +70,9 @@ public class UsersController {
 	}
 
 	@RequestMapping("/logout")
-	public String logout(SessionStatus status) {
+	public String logout(HttpSession session) {
 
-		status.setComplete();
+		session.invalidate();
 
 		String page = "redirect:/";
 
@@ -87,6 +96,24 @@ public class UsersController {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@RequestMapping("/update")
+	public void updateUser(UsersDTO usersDTO) {
+		
+		int result;
+		try {
+			result = usersService.updateUser(usersDTO);
+			
+			if (result < 0) {
+				throw new Exception("회원수정 실패!!");
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

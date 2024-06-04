@@ -17,6 +17,20 @@
 		VALUES(NULL, #{userCategory}, #{id},#{pw},#{name},#{tel},NOW())
 	
 	</insert>
+	
+	<update id="updateUser" parameterType="usersDTO">
+	
+		update users
+		set 
+		user_category=#{userCategory},
+		id=#{id},
+		pw=#{pw},
+		name=#{name},
+		name=#{name},
+		
+	
+	
+	</update>
 
 
 
