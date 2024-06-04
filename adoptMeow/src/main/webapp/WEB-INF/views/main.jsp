@@ -8,6 +8,34 @@
 </head>
 <body>
 	<h1 align="center">CatMeow에 오신 것을 환영합니다!!</h1>	
+	
+	
+	<h2>로그인하세요</h2>
+	
+	<c:if test="${empty requestScope.loginUser}">
+	
+		<form action="users/login" methid="post">
+	
+		아이디  : <input name="id"><br>
+		패스워드 : <input name="pw"><br>		
+		<button type="submit">로그인!!</button>
+	
+		</form>
+	
+	</c:if>
+	
+	<c:if test="${!empty requestScope.loginUser}">
+	
+		<label>${sessionScope.loginUser.name}님 환영합니다.</label>
+		<a href="/users/myPage">마이페이지 가기</a>
+		<a href="/users/logout">로그아웃</a>
+	
+	</c:if>
+	
+	
+	
+	
+	
 
 	
 	<h2>고양이 게시판</h2>

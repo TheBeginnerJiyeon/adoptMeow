@@ -8,66 +8,67 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.multi.spring.cat.model.dto.CatDTO;
+import com.multi.spring.cat.service.CatService;
 
 @Controller
 @RequestMapping("/cat") // ** 는 모든 하위 폴더 전부
-public class CatClassMappingController {
+public class CatController {
+
+	private final CatService catService;
+
+	public CatController(CatService catService) {
+		super();
+		this.catService = catService;
+	}
 
 	@RequestMapping("/main")
 	public String Main() {
 
 		return "redirect:/main.jsp";
 	}
-	
-	
-	
-	@RequestMapping("/insert_Form")
+
+	@RequestMapping("/insert_form")
 	public void insertForm() {
-		
-		
+
 	}
-	
-	
-	
-	@RequestMapping("/modify_Form")
+
+	@RequestMapping("/modify_form")
 	public void modifyForm() {
-		
-		
+
 	}
-	
-	
-	
-	@RequestMapping("/delete_Form")
+
+	@RequestMapping("/delete_form")
 	public void deleteForm() {
-		
-		
+
 	}
-	
-	
-	
-	@RequestMapping("/list_Form")
+
+	@RequestMapping("/list_form")
 	public void listForm() {
-		
-		
+
 	}
-	
-	
-	
-	@RequestMapping("/detail_Form")
+
+	@RequestMapping("/detail_form")
 	public void detailForm() {
-		
-		
+
 	}
-	
-	
-	
-	
-	
 
-	@PostMapping("/regist")
-	public void registOrder(Model model) {
+	@PostMapping("/insert")
+	public void insertCat(Model model, CatDTO catDTO) {
+		
+		String userId = (String) model.getAttribute("userId");
+		catDTO.setCreatedPerson(userId);
+		
+		try {
+			int result =catService.insertCat(catDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 
-		model.addAttribute("message", "class regist get");
+		model.addAttribute("message", "cat insert succeess!!");
 
 	}
 

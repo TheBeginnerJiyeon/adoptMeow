@@ -1,4 +1,4 @@
-package com.multi.spring.board.model.dto;
+package com.multi.spring.cat.model.dto;
 
 import java.util.Date;
 
