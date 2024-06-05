@@ -26,8 +26,9 @@
 		id=#{id},
 		pw=#{pw},
 		name=#{name},
-		name=#{name},
+		tel=#{tel}
 		
+		where no=#{no}
 	
 	
 	</update>

@@ -37,8 +37,7 @@ button {
 	<%-- <jsp:include page="../common/menubar.jsp" /> --%>
 
 	<div class="content">
-		<br>
-		<br>
+		<br> <br>
 		<div class="innerOuter">
 			<h3>고양이 등록 페이지</h3>
 			<hr>
@@ -47,7 +46,7 @@ button {
 			</a> <img
 				src="${ pageContext.servletContext.contextPath }/resources/img/cat2.jpg"
 				width="200" height="200">
-			<form action="insert" method="post">
+			<form action="insert" method="post" enctype="multipart/form-data">
 				<table border="1">
 					<tr>
 						<td class="t1">아이디(자동생성)</td>
@@ -86,26 +85,33 @@ button {
 								<option value="c400">MY</option>
 						</select></td>
 					</tr>
+
+
+
 					<!-- 이미지 업로드 방법으로 바꿀 것 -->
 					<tr>
 						<td class="t1">이미지 :</td>
-						<td><input name="img" value="image1.jpg"></td>
+						<td>파일 선택 : <input type="file" name="singleFile"></td>
 					</tr>
+
+
+
+
+
 					<tr>
 						<td colspan="2" class="t1">
-							<button id="b2">회원가입 데이터 전송</button>
+							<button id="b2">고양이 등록 데이터 전송</button>
 						</td>
 					</tr>
 				</table>
-		
+
 			</form>
 
 
 
 
 		</div>
-		<br>
-		<br>
+		<br> <br>
 	</div>
 
 

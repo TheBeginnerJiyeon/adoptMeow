@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class CatDTO {
 	
+	private int rownum;
+	
 	private int id;
 	private String name;
 	private int catColorId;
@@ -14,9 +16,24 @@ public class CatDTO {
 	private Date createdDate;
 	private String createdPerson;
 	private Date modifiedDate;
+	private String modifiedPerson;
 	private String status;
 	
 	
+	
+	
+	public String getModifiedPerson() {
+		return modifiedPerson;
+	}
+	public void setModifiedPerson(String modifiedPerson) {
+		this.modifiedPerson = modifiedPerson;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getId() {
 		return id;
 	}
@@ -88,10 +105,13 @@ public class CatDTO {
 	}
 	@Override
 	public String toString() {
-		return "CatDTO [id=" + id + ", name=" + name + ", catColorId=" + catColorId + ", content=" + content + ", age="
-				+ age + ", shelterId=" + shelterId + ", img=" + img + ", createdDate=" + createdDate
-				+ ", createdPerson=" + createdPerson + ", modifiedDate=" + modifiedDate + ", status=" + status + "]";
+		return "CatDTO [rownum=" + rownum + ", id=" + id + ", name=" + name + ", catColorId=" + catColorId
+				+ ", content=" + content + ", age=" + age + ", shelterId=" + shelterId + ", img=" + img
+				+ ", createdDate=" + createdDate + ", createdPerson=" + createdPerson + ", modifiedDate=" + modifiedDate
+				+ ", status=" + status + "]";
 	}
+	
+	
 	
 	
 	

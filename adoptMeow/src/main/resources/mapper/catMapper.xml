@@ -13,6 +13,27 @@
 		values (#{id}, #{name} , #{catColorId}, #{content}, #{age},#{shelterId},#{img},#{createdPerson})
 	</insert>
 	
+	
+	<select id="selectList" parameterType="pageDTO" resultType="catDTO">
+	
+		select 
+		rownum, id, name, cat_color_id, content, age, shelter_id,
+		img, created_date, created_person, modified_date, 
+		modified_person, status
+		from (select ROW_NUMBER() over(order by id desc) as rownum, c.* 
+		from cat c) c2
+		where c2.rownum between ${start} and ${end}
+	
+	
+	</select>
+	
+	<select id="selectCount" resultType="Integer">
+		select count(*) count from cat
+	
+	</select>
+	
+	
+	
 	<!-- <update id="updateBoard" parameterType="boardDTO">
 		update board
 		set 

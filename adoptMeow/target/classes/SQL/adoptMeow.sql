@@ -50,6 +50,71 @@ COMMIT;
 SELECT * FROM USERS_CATEGORY;
 
 
+DELIMITER //
+CREATE TRIGGER trg_useridafter2
+AFTER UPDATE ON users
+FOR EACH ROW
+begin
+	
+	
+    IF NEW.id != OLD.id THEN
+        UPDATE cat
+        SET created_person = NEW.id
+        WHERE created_person = OLD.id;
+
+        UPDATE cat
+        SET modified_person = NEW.id
+        WHERE modified_person = OLD.id;
+
+        UPDATE meow_attachment 
+        SET created_person = NEW.id
+        WHERE created_person = OLD.id;
+
+        UPDATE meow_attachment 
+        SET modified_person = NEW.id
+        WHERE modified_person = OLD.id;
+
+        UPDATE meow_board
+        SET writer = NEW.id
+        WHERE writer = OLD.id;
+       
+    END if;   
+end // 
+
+DELIMITER ;
+
+
+
+DELIMITER //
+
+CREATE TRIGGER deletetrigger1
+    AFTER DELETE
+    ON users FOR EACH ROW
+BEGIN
+ 
+	DELETE FROM meow_attachment 
+    WHERE meow_attachment.CREATED_PERSON  = old.id;
+   
+ 
+	DELETE FROM meow_attachment 
+    WHERE meow_attachment.MODIFIED_PERSON  = old.id;
+   
+ 
+	DELETE FROM cat 
+    WHERE cat.CREATED_PERSON  = old.id;
+   
+ 
+	DELETE FROM cat
+    WHERE cat.MODIFIED_PERSON  = old.id;
+   
+	DELETE FROM meow_board  
+    WHERE meow_board.writer  = old.id;
+   
+end //   
+
+DELIMITER ;
+
+
 
 
 DROP TABLE SHELTER;

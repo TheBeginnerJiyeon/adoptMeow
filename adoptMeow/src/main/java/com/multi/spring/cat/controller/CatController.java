@@ -1,5 +1,14 @@
 package com.multi.spring.cat.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,9 +16,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.spring.cat.model.dto.CatDTO;
 import com.multi.spring.cat.service.CatService;
+import com.multi.spring.page.model.dto.PageDTO;
+import com.multi.spring.users.model.dto.UsersDTO;
 
 @Controller
 @RequestMapping("/cat") // ** 는 모든 하위 폴더 전부
@@ -38,14 +51,67 @@ public class CatController {
 
 	}
 
-	@RequestMapping("/delete_form")
-	public void deleteForm() {
+	@RequestMapping("/delete")
+	public void delete() {
 
 	}
 
-	@RequestMapping("/list_form")
-	public void listForm() {
+	@GetMapping("/list")
+	public void list(@RequestParam("page") int page, Model model) {
+		
+		PageDTO pageDTO=new PageDTO();
+		
+		pageDTO.setPage(page);
 
+		System.out.println("page: " + pageDTO.getPage());
+
+		pageDTO.setStartEnd(pageDTO.getPage());
+
+		try {
+			List<CatDTO> list = catService.selectList(pageDTO);
+
+			System.out.println("list: "+list);
+			
+			int count = catService.selectCount();
+
+			int pages = count / 5 + 1;
+			
+			model.addAttribute("list",list);
+			model.addAttribute("count",count);
+			model.addAttribute("pages",pages);
+			
+			System.out.println("pages : " + pages);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	@GetMapping("/catList2")
+	public void list2(PageDTO pageDTO, Model model) {
+		
+		
+		
+		System.out.println("page: list2" + pageDTO.getPage());
+		
+		pageDTO.setStartEnd(pageDTO.getPage());
+		
+		try {
+			List<CatDTO> list = catService.selectList(pageDTO);
+			
+			System.out.println("list: "+list);
+			
+			
+			model.addAttribute("list",list);
+
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@RequestMapping("/detail_form")
@@ -54,19 +120,65 @@ public class CatController {
 	}
 
 	@PostMapping("/insert")
-	public void insertCat(Model model, CatDTO catDTO) {
-		
-		String userId = (String) model.getAttribute("userId");
-		catDTO.setCreatedPerson(userId);
-		
-		try {
-			int result =catService.insertCat(catDTO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void insertCat(HttpServletRequest httpServletRequest, HttpSession httpSession, Model model, CatDTO catDTO,
+			MultipartFile singleFile) {
+
+		// 파일을 서버에 저장
+
+		// 경로 지정, 폴더 생성
+		String root = httpServletRequest.getSession().getServletContext().getRealPath("resources");
+
+		System.out.println("root: " + root);
+
+		String filePath = root + "\\uploadFiles";
+
+		File mkdir = new File(filePath);
+
+		if (!mkdir.exists()) {
+			mkdir.mkdirs();
 		}
-		
-		
+
+		System.out.println("singleFile" + singleFile);
+
+		// 파일 명 변경
+		String originalFileName = singleFile.getOriginalFilename();
+		String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+		System.out.println("originalFileName" + originalFileName);
+		System.out.println("ext" + ext);
+
+		String savedName = UUID.randomUUID().toString().replace("-", "") + ext;
+
+		// 파일을 서버에 저장
+
+		try {
+			singleFile.transferTo(new File(filePath + "\\" + savedName));
+
+			model.addAttribute("savedName", savedName);
+
+			catDTO.setImg(savedName);
+
+			// 그 외 유저의 아이디를 보낼 캣dto에 저장
+			UsersDTO loginDto = (UsersDTO) httpSession.getAttribute("loginUser");
+
+			String userId = loginDto.getId();
+
+			catDTO.setCreatedPerson(userId);
+
+			int result = catService.insertCat(catDTO);
+
+			model.addAttribute("catDTO", catDTO);
+
+			System.out.println("catDTO : " + catDTO);
+
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+
+			new File(filePath + "\\" + savedName).delete();
+			model.addAttribute("message", "파일 업로드 실패!!");
+
+		}
 
 		model.addAttribute("message", "cat insert succeess!!");
 

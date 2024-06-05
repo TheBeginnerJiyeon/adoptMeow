@@ -53,14 +53,15 @@
 		<button type="submit">POST 고양이 수정 요청</button>
 	</form>
 	
-	<h3>POST : /cat/delete_form</h3>
-	<form action="${pageContext.servletContext.contextPath}/cat/delete_form" method="post">
+	<h3>POST : /cat/delete</h3>
+	<form action="${pageContext.servletContext.contextPath}/cat/delete" method="get">
 		<button type="submit">POST 고양이 삭제 요청</button>
 	</form>	
 	
 	
-	<h3>GET : /cat/list_form</h3>
-	<form action="${pageContext.servletContext.contextPath}/cat/list_form" method="get">
+	<h3>GET : /cat/list</h3>
+	<form action="${pageContext.servletContext.contextPath}/cat/list" method="get">
+		<input type="hidden" name="page" value="1">
 		<button type="submit">Get 고양이 전체 목록 요청</button>
 	</form>
 	

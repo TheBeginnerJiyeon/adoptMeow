@@ -16,6 +16,8 @@
      
       <typeAlias type="com.multi.spring.cat.model.dto.CatDTO" alias="catDTO"></typeAlias>
       <typeAlias type="com.multi.spring.users.model.dto.UsersDTO" alias="usersDTO"></typeAlias>
+      <typeAlias type="com.multi.spring.cat.model.dto.CatDTO" alias="catDTO"></typeAlias>
+      <typeAlias type="com.multi.spring.page.model.dto.PageDTO" alias="pageDTO"></typeAlias>
       
   
    </typeAliases>
