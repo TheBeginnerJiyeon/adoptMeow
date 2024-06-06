@@ -56,6 +56,7 @@ public class CatController {
 
 	}
 
+	// 나중에 등록한 이미지가 보이게 넣기
 	@GetMapping("/list")
 	public void list(@RequestParam("page") int page, Model model) {
 		
@@ -119,6 +120,7 @@ public class CatController {
 
 	}
 
+	// 등록할 때도 썸네일 넣기 도전??  
 	@PostMapping("/insert")
 	public void insertCat(HttpServletRequest httpServletRequest, HttpSession httpSession, Model model, CatDTO catDTO,
 			MultipartFile singleFile) {

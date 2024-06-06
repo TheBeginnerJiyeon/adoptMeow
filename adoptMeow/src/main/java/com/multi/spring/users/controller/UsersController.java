@@ -49,6 +49,7 @@ public class UsersController {
 			loginDto = usersService.login(usersDTO);
 
 			if (loginDto == null) {
+				// 오류를 이미 서비스 임플에서 잡아놔서 굳이 할 필요 없을 거 같긴 한데 왜 넣었지
 				throw new Exception("로그인 실패!! 아이디가 없음..");
 			}
 

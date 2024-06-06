@@ -13,7 +13,7 @@ CREATE TABLE USERS(
 	name varchar(100),
 	tel varchar(20),
 	created_date timestamp DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (USER_CATEGORY) REFERENCES USERS_CATEGORY(C_CODE)
+	FOREIGN KEY (USER_CATEGORY) REFERENCES USERS_CATEGORY(C_CODE) on update cascade on delete cascade
 );
 
 INSERT INTO USERS
@@ -35,60 +35,54 @@ SELECT * FROM USERS;
 ALTER TABLE USERS
 MODIFY COLUMN pw VARCHAR(100);
 
-drop table MEOW_CATEGORY cascade;
-
-CREATE TABLE USERS_CATEGORY(
-
-  C_CODE INT PRIMARY KEY,
-  C_NAME VARCHAR(30) CHECK(C_NAME IN('관리자', '일반'))  
-);
 
 
-INSERT INTO USERS_CATEGORY (C_CODE, C_NAME) VALUES(10, '관리자');
-INSERT INTO USERS_CATEGORY (C_CODE, C_NAME) VALUES(20, '일반');
-COMMIT;
-SELECT * FROM USERS_CATEGORY;
 
+/*DELIMITER //
 
-DELIMITER //
 CREATE TRIGGER trg_useridafter2
 AFTER UPDATE ON users
 FOR EACH ROW
-begin
-	
-	
+BEGIN
     IF NEW.id != OLD.id THEN
+        -- Update created_person in the cat table
         UPDATE cat
         SET created_person = NEW.id
         WHERE created_person = OLD.id;
 
+        -- Update modified_person in the cat table
         UPDATE cat
         SET modified_person = NEW.id
         WHERE modified_person = OLD.id;
 
-        UPDATE meow_attachment 
+        -- Update created_person in the meow_attachment table
+        UPDATE meow_attachment
         SET created_person = NEW.id
         WHERE created_person = OLD.id;
 
-        UPDATE meow_attachment 
+        -- Update modified_person in the meow_attachment table
+        UPDATE meow_attachment
         SET modified_person = NEW.id
         WHERE modified_person = OLD.id;
 
+        -- Update writer in the meow_board table
         UPDATE meow_board
         SET writer = NEW.id
         WHERE writer = OLD.id;
-       
-    END if;   
-end // 
+    END IF;
+END //
 
 DELIMITER ;
+
+
+
 
 
 
 DELIMITER //
 
 CREATE TRIGGER deletetrigger1
-    AFTER DELETE
+    before DELETE
     ON users FOR EACH ROW
 BEGIN
  
@@ -112,7 +106,24 @@ BEGIN
    
 end //   
 
-DELIMITER ;
+DELIMITER ;*/
+
+
+
+
+drop table users_CATEGORY cascade;
+
+CREATE TABLE USERS_CATEGORY(
+
+  C_CODE INT PRIMARY KEY,
+  C_NAME VARCHAR(30) CHECK(C_NAME IN('관리자', '일반'))  
+);
+
+
+INSERT INTO USERS_CATEGORY (C_CODE, C_NAME) VALUES(10, '관리자');
+INSERT INTO USERS_CATEGORY (C_CODE, C_NAME) VALUES(20, '일반');
+COMMIT;
+SELECT * FROM USERS_CATEGORY;
 
 
 
@@ -138,6 +149,8 @@ COMMIT;
 SELECT * FROM SHELTER;
 
 
+drop table color;
+
 CREATE TABLE COLOR (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     NAME VARCHAR(100)
@@ -151,13 +164,16 @@ commit;
 SELECT * FROM COLOR;
 
 
+
+drop table cat_color;
+
 CREATE TABLE CAT_COLOR (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     COLOR_ID1 INT,
     COLOR_ID2 INT,    
     NAME VARCHAR(100),
-    FOREIGN KEY (COLOR_ID1) REFERENCES COLOR(ID),
-    FOREIGN KEY (COLOR_ID2) REFERENCES COLOR(ID)
+    FOREIGN KEY (COLOR_ID1) REFERENCES COLOR(ID) on update cascade on delete cascade,
+    FOREIGN KEY (COLOR_ID2) REFERENCES COLOR(ID) on update cascade on delete cascade
 );
 
 INSERT INTO CAT_COLOR(COLOR_ID1,COLOR_ID2, NAME) VALUES (1,null, '검냥이');
@@ -188,10 +204,10 @@ CREATE TABLE CAT (
   	MODIFIED_DATE DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   	MODIFIED_PERSON VARCHAR (100),
   	STATUS CHAR(1) DEFAULT 'Y',
-  	FOREIGN KEY (SHELTER_ID) REFERENCES SHELTER(ID),
-  	FOREIGN KEY (CAT_COLOR_ID) REFERENCES CAT_COLOR(ID),
-  	FOREIGN KEY (CREATED_PERSON) REFERENCES USERS(ID),
-  	FOREIGN KEY (MODIFIED_PERSON) REFERENCES USERS(ID)
+  	FOREIGN KEY (SHELTER_ID) REFERENCES SHELTER(ID) on update cascade on delete cascade,
+  	FOREIGN KEY (CAT_COLOR_ID) REFERENCES CAT_COLOR(ID) on update cascade on delete cascade,
+  	FOREIGN KEY (CREATED_PERSON) REFERENCES USERS(ID) on update cascade on delete cascade,
+  	FOREIGN KEY (MODIFIED_PERSON) REFERENCES USERS(ID) on update cascade on delete cascade
 
 );
 
@@ -220,8 +236,8 @@ CREATE TABLE MEOW_BOARD (
   CREATED_DATE DATETIME DEFAULT CURRENT_TIMESTAMP,
   MODIFIED_DATE DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   STATUS CHAR(1) DEFAULT 'Y',
-  FOREIGN KEY (WRITER) REFERENCES USERS(ID),
-  FOREIGN KEY (CAT_ID) REFERENCES CAT(ID)
+  FOREIGN KEY (WRITER) REFERENCES USERS(ID) on update cascade on delete cascade,
+  FOREIGN KEY (CAT_ID) REFERENCES CAT(ID) on update cascade on delete cascade
 );
 
 INSERT INTO MEOW_BOARD 
@@ -247,7 +263,7 @@ SELECT * FROM MEOW_BOARD;
 
 
 
-DROP TABLE MEOW_ATTACHMENT ;
+DROP TABLE MEOW_ATTACHMENT cascade;
 -- 첨부파일 테이블 생성
 CREATE TABLE MEOW_ATTACHMENT (
   ATTACHMENT_NO INT PRIMARY KEY AUTO_INCREMENT,
@@ -261,9 +277,9 @@ CREATE TABLE MEOW_ATTACHMENT (
   CREATED_PERSON VARCHAR (100),
   MODIFIED_DATE DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   MODIFIED_PERSON VARCHAR (100),
-  FOREIGN KEY (REF_CAT_NO) REFERENCES CAT(ID),
-  FOREIGN KEY (CREATED_PERSON) REFERENCES USERS(ID),
-  FOREIGN KEY (MODIFIED_PERSON) REFERENCES USERS(ID)
+  FOREIGN KEY (REF_CAT_NO) REFERENCES CAT(ID) on update cascade on delete cascade,
+  FOREIGN KEY (CREATED_PERSON) REFERENCES USERS(ID) on update cascade on delete cascade,
+  FOREIGN KEY (MODIFIED_PERSON) REFERENCES USERS(ID) on update cascade on delete cascade
 );
 
 SELECT * FROM MEOW_ATTACHMENT ;
