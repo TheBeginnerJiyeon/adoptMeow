@@ -2,12 +2,16 @@ package com.multi.spring.users.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.multi.spring.users.model.dao.UsersDAO;
 import com.multi.spring.users.model.dto.UsersDTO;
 
+@EnableAspectJAutoProxy
+@Transactional(rollbackFor = {Exception.class})
 @Service("userService")
 public class UsersServiceImpl implements UsersService {
 
