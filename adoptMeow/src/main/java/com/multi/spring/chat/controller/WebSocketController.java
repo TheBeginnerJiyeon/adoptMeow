@@ -42,4 +42,39 @@ public class WebSocketController {
 
 	}
 
+	@MessageMapping("/chatBotRoom")
+	@SendTo("/freeChat/messages2")
+	public OutputMessageDTO send2(MessageDTO messageDTO) {
+
+		System.out.println("messageDTO" + messageDTO);
+
+		OutputMessageDTO outputMessageDTO = new OutputMessageDTO();
+		String list = "";
+		switch (messageDTO.getText()) {
+		case "1":
+			list = "chatBot: 10)고양이 바로 가기 11)보호소 바로 가기 12)상담사 연결";
+			break;
+		case "2":
+			list = "chatBot: 잠시만 기다려 주십시오...";
+			break;
+		case "10":
+			list = "chatBot: 고양이 메뉴 링크";
+			break;
+		case "11":
+			list = "chatBot: 보호소 링크";
+			break;
+		case "12":
+			list = "chatBot: 상담사를 기다리고 있습니다";
+			break;
+
+		default:
+			break;
+		}
+
+		outputMessageDTO.setText(list);
+
+		return outputMessageDTO;
+
+	}
+
 }

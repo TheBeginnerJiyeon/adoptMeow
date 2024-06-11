@@ -16,7 +16,7 @@
 	function chatWithOthers() {
 
 		let userName = "annonymousUser_" + Date.now();
-		window.open("chat/chatWithOthers", userName, "width=700,height=700");
+		window.open("chat/chatWithOthers", userName, "width=600,height=600");
 
 	}
 	
@@ -24,7 +24,7 @@
 
 	function chatBot() {
 
-		window.open("chat/chatBot", "chatBot", "width=640,height=400");
+		window.open("chat/chatBot", "chatBot", "width=600,height=600");
 
 	}
 	
