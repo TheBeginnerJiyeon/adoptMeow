@@ -30,6 +30,13 @@ public class UsersController {
 		return page;
 
 	}
+	
+	
+	@RequestMapping("/usersMain")
+	public void usersMain() {
+
+	}
+	
 
 	@RequestMapping("/insert_form")
 	public void insertForm() {

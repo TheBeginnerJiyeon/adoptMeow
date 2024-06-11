@@ -38,12 +38,17 @@ public class CatController {
 	@RequestMapping("/main")
 	public String Main() {
 
-		return "redirect:/main.jsp";
+		return "redirect:/";
 	}
 
+	@RequestMapping("/catMain")
+	public void catMain() {
+
+	}
+	
 	@RequestMapping("/insert_form")
 	public void insertForm() {
-
+		
 	}
 
 	@RequestMapping("/modify_form")

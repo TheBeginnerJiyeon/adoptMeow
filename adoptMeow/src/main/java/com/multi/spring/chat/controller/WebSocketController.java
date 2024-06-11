@@ -15,16 +15,6 @@ import com.multi.spring.chat.model.dto.OutputMessageDTO;
 @Controller
 public class WebSocketController {
 
-	// 채팅방 윈도우 창 경로
-	@GetMapping("/chat/chatWithOthers")
-	public void func1() {
-	}
-
-	// 챗봇 윈도우 창 경로
-	@GetMapping("/chat/chatBot")
-	public void func2() {
-	}
-
 	@MessageMapping("/chatRoom")
 	@SendTo("/freeChat/messages1")
 	public OutputMessageDTO send(MessageDTO messageDTO) {
