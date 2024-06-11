@@ -37,7 +37,7 @@
 
 		<h3>GET : /cat/list</h3>
 		<a href=
-		"${pageContext.servletContext.contextPath}/cat/list">
+		"${pageContext.servletContext.contextPath}/cat/list?page=1">
 		list</a>
 
 		<h3>GET : /cat/detail_form</h3>

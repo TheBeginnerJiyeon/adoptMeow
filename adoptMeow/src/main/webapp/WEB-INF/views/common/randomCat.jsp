@@ -38,7 +38,7 @@
 
 <script>
 
-const url = `https://api.thecatapi.com/v1/images/search?limit=50`;
+const url = "https://api.thecatapi.com/v1/images/search?limit=50";
 const api_key = "DEMO_API_KEY"
 
  fetch(url,{headers: {

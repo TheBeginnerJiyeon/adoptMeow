@@ -92,8 +92,11 @@
 
 </div>
 
-	
-
+<br><br>
+<a href="${pageContext.servletContext.contextPath}/cat/catMain">
+고양이 메인으로 돌아가기</a><br><br>
+<a href="${pageContext.servletContext.contextPath}/cat/main">
+초기 화면으로 돌아가기</a><br><br>
 
 
 
