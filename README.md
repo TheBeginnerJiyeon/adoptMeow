@@ -1,5 +1,5 @@
 # [😽 **adoptMeow**](https://www.youtube.com/watch?v=catyoutube임시)
-### 😽 adoptMeow는 고양이를 입양할 수 있는 사이트입니다..
+### 😽 adoptMeow는 고양이를 입양할 수 있는 사이트입니다..(스트링부트 버전으로 변경!!)
 
  😺 😸 😻 😽 😼 🙀 😿 😹 😾 
  🎍 💝 🎎 🎒 🎓 🎏 🎆 🎇 🎐 🎑 🎃 👻 🎅 🎄 🎁 🔔 🔕
